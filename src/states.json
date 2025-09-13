@@ -184,14 +184,7 @@
 		"latitude": [10.3492, -67.0345],
 		"img": "./familyPictures/losTeques.jpg"
 	},
-	{
-		"id": "cumana",
-		"name": "Igleisa Biblica Bautista de Cumana",
-		"family": "Orellana",
-		"location": "Cumana",
-		"latitude": [10.4319, -64.1833],
-		"img": "./familyPictures/cumana.jpg"
-	},
+
 	{
 		"id": "cua",
 		"name": "Igleisa Biblica Bautista La Preciosa Semilla",
