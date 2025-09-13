@@ -1,0 +1,222 @@
+[
+	{
+		"id": "cajaSeca",
+		"name": "Iglesia Biblica Bautista de Caja Seca",
+		"family": "Mogollon",
+		"location": "Caja Seca",
+		"latitude": [9.1518116, -71.0824613],
+		"img": "./familyPictures/cajaSeca.jpg"
+	},
+	{
+		"id": "caracas",
+		"name": "Caracas",
+		"multiChurchState": true,
+		"latitude": [10.486651889925456, -66.94913029306039],
+		"churches": [
+			{
+				"id": "vistaAlegre",
+				"name": "IBBVA",
+				"family": "Paez",
+				"location": "Vista Alegre",
+				"locationUrl": "https://maps.app.goo.gl/PboYpmG1gFyaP4FZ8",
+				"img": "./familyPictures/caracas.jpg",
+				"socials": [
+					{
+						"name": "instagram",
+						"socialUrl": "https://www.instagram.com/iglesiabbva/"
+					},
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/IglesiaBBVistaAlegre"
+					}
+				]
+			},
+			{
+				"id": "lasAdjuntas",
+				"name": "Iglesia Bautista de Las Adjuntas",
+				"family": "Mata",
+				"location": "Las Adjuntas",
+				"img": "./familyPictures/lasAdjuntas.jpg"
+			},
+			{
+				"id": "laMariposa",
+				"name": "Iglesia Bautista Templo de Dios",
+				"family": "Guzman",
+				"location": "La Mariposa",
+				"locationUrl": "https://maps.app.goo.gl/4MoDyetcXnDUmw2GA",
+				"img": "./familyPictures/laMariposa.jpg",
+				"socials": [
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/IglesiaBautistaTemplodeDios/"
+					}
+				]
+			},
+			{
+				"id": "catia",
+				"name": "Iglesia Bautista Torre Fuerte",
+				"family": "Montilla",
+				"location": "Catia",
+				"img": "./familyPictures/catia.jpg"
+			},
+			{
+				"id": "kennedy",
+				"name": "Iglesia Bautista La Esperanza",
+				"family": "Becerra",
+				"location": "Keneddy",
+				"img": "./familyPictures/kennedy.jpg",
+				"socials": [
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/IBBLAESPERANZA"
+					},
+					{
+						"name": "instagram",
+						"socialUrl": "https://www.instagram.com/ibblaesperanza/"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "vargas",
+		"name": "Vargas",
+		"multiChurchState": true,
+		"latitude": [10.589, -66.7367],
+		"churches": [
+			{
+				"id": "laGuaira",
+				"name": "Iglesia Bautista La Espada",
+				"family": "Ramirez",
+				"location": "La Guaira",
+				"locationUrl": "https://maps.app.goo.gl/eUBhhZpb8uyDKyKC7",
+				"img": "./familyPictures/laGuaira.jpg"
+			},
+			{
+				"id": "carayaca",
+				"name": "Iglesia Bautista La Antorcha",
+				"family": "Perez",
+				"location": "Carayaca",
+				"img": "./familyPictures/carayaca.jpg"
+			},
+			{
+				"id": "catialaMar",
+				"name": "Iglesia Bautista Roca Firme",
+				"family": "Diaz",
+				"location": "Catia La Mar",
+				"img": "./familyPictures/catiaLaMar.jpg"
+			}
+		]
+	},
+	{
+		"id": "maracaibo",
+		"name": "IBB Maracaibo",
+		"family": "Ferrer",
+		"location": "Maracaibo",
+		"latitude": [10.641, -71.6074],
+		"img": "./familyPictures/maracaibo.jpg"
+	},
+	{
+		"id": "juangriego",
+		"name": "Iglesia Bautista de Juangriego",
+		"family": "Bolivar",
+		"location": "Margarita",
+		"latitude": [11.0826, -63.9675],
+		"img": "./familyPictures/juangriego.jpg"
+	},
+	{
+		"id": "valencia",
+		"name": "IBB Valencia",
+		"family": "Castillo",
+		"location": "Valencia, Carabobo",
+		"locationUrl": "https://maps.app.goo.gl/EgmizJ2twRWQM3vJ8",
+		"latitude": [10.1579, -67.9972],
+		"img": "./familyPictures/valencia.jpg",
+		"socials": [
+			{
+				"name": "instagram",
+				"socialUrl": "https://www.instagram.com/ibbvalencia/"
+			},
+			{
+				"name": "facebook",
+				"socialUrl": "https://www.facebook.com/IglesiaBiblicaBautistaValencia"
+			}
+		]
+	},
+	{
+		"id": "tachira",
+		"name": "Iglesia Bautista Biblia para Todos",
+		"family": "Tremaria",
+		"location": "Tachira, San Cristobal",
+		"locationUrl": "https://maps.app.goo.gl/dc8Vr3oVeziG1Sex8",
+		"latitude": [7.9137, -72.1416],
+		"img": "./familyPictures/tachira.jpg"
+	},
+	{
+		"id": "caripito",
+		"name": "Igleisa Biblica Bautista de Caripito",
+		"family": "Toro",
+		"location": "Caripito, Monagas",
+		"latitude": [10.1073, -63.1031],
+		"img": "./familyPictures/caripito.jpg"
+	},
+	{
+		"id": "puertoAyacucho",
+		"name": "Igleisa Biblica Bautista de Puerto Ayacucho",
+		"family": "Hernandez",
+		"location": "Puerto Ayacucho, Amazonas",
+		"latitude": [5.6615, -67.5828],
+		"img": "./familyPictures/puertoAyacucho.jpg"
+	},
+	{
+		"id": "sanFernando",
+		"name": "Igleisa Bautista Casa de Dios",
+		"family": "Parra",
+		"location": "San Fernando de Apure",
+		"latitude": [7.8807, -67.4695],
+		"img": "./familyPictures/sanFernando.jpg"
+	},
+	{
+		"id": "losTeques",
+		"name": "Igleisa Bautista de Los Teques",
+		"family": "Main",
+		"location": "Los Teques",
+		"latitude": [10.3492, -67.0345],
+		"img": "./familyPictures/losTeques.jpg"
+	},
+	{
+		"id": "cumana",
+		"name": "Igleisa Biblica Bautista de Cumana",
+		"family": "Orellana",
+		"location": "Cumana",
+		"latitude": [10.4319, -64.1833],
+		"img": "./familyPictures/cumana.jpg"
+	},
+	{
+		"id": "cua",
+		"name": "Igleisa Biblica Bautista La Preciosa Semilla",
+		"family": "Rojas",
+		"location": "Cua",
+		"latitude": [10.1709, -66.8916],
+		"locationUrl": "https://maps.app.goo.gl/Y2STAcXG8smCGxp98",
+		"img": "./familyPictures/cua.jpg"
+	},
+	{
+		"id": "guacara",
+		"name": "Iglesia Bíblica Bautista Libertad",
+		"family": "Quilarque",
+		"location": "Guacara",
+		"latitude": [10.2647, -67.8927],
+		"img": "./familyPictures/guacara.jpg",
+		"socials": [
+			{
+				"name": "instagram",
+				"socialUrl": "https://www.instagram.com/ibbl_2003"
+			},
+			{
+				"name": "facebook",
+				"socialUrl": "https://www.facebook.com/IBBLIBERTAD/"
+			}
+		]
+	}
+]
