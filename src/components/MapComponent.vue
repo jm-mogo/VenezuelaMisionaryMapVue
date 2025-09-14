@@ -33,8 +33,8 @@ const attribution =
 			ref="map"
 			v-model:zoom="zoom"
 			:center="center"
-			:min-zoom="6"
-			:max-zoom="8"
+			:min-zoom="5"
+			:max-zoom="10"
 			:max-bounds="venezuelaBounds"
 		>
 			<l-tile-layer
