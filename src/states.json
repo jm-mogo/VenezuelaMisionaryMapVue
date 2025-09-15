@@ -4,6 +4,7 @@
 		"name": "Iglesia Biblica Bautista de Caja Seca",
 		"family": "Mogollon",
 		"location": "Caja Seca",
+		"region": "Zulia",
 		"latitude": [9.1518116, -71.0824613],
 		"img": "./familyPictures/cajaSeca.jpg"
 	},
@@ -11,13 +12,15 @@
 		"id": "caracas",
 		"name": "Caracas",
 		"multiChurchState": true,
-		"latitude": [10.486651889925456, -66.94913029306039],
+		"region": "Distrito Capital",
+		"latitude": [10.486651, -66.94913],
 		"churches": [
 			{
 				"id": "vistaAlegre",
 				"name": "IBBVA",
 				"family": "Paez",
 				"location": "Vista Alegre",
+				"latitude": [10.48669, -66.95333],
 				"locationUrl": "https://maps.app.goo.gl/PboYpmG1gFyaP4FZ8",
 				"img": "./familyPictures/caracas.jpg",
 				"socials": [
@@ -36,6 +39,7 @@
 				"name": "Iglesia Bautista de Las Adjuntas",
 				"family": "Mata",
 				"location": "Las Adjuntas",
+				"latitude": [10.42555, -67.01291],
 				"img": "./familyPictures/lasAdjuntas.jpg"
 			},
 			{
@@ -43,6 +47,7 @@
 				"name": "Iglesia Bautista Templo de Dios",
 				"family": "Guzman",
 				"location": "La Mariposa",
+				"latitude": [10.419960539267889, -66.92749420500591],
 				"locationUrl": "https://maps.app.goo.gl/4MoDyetcXnDUmw2GA",
 				"img": "./familyPictures/laMariposa.jpg",
 				"socials": [
@@ -57,6 +62,7 @@
 				"name": "Iglesia Bautista Torre Fuerte",
 				"family": "Montilla",
 				"location": "Catia",
+				"latitude": [10.51502, -66.94444],
 				"img": "./familyPictures/catia.jpg"
 			},
 			{
@@ -64,6 +70,7 @@
 				"name": "Iglesia Bautista La Esperanza",
 				"family": "Becerra",
 				"location": "Keneddy",
+				"latitude": [10.41792, -67.02053],
 				"img": "./familyPictures/kennedy.jpg",
 				"socials": [
 					{
@@ -82,6 +89,7 @@
 		"id": "vargas",
 		"name": "Vargas",
 		"multiChurchState": true,
+		"region": "La Guaira",
 		"latitude": [10.589, -66.7367],
 		"churches": [
 			{
@@ -89,6 +97,7 @@
 				"name": "Iglesia Bautista La Espada",
 				"family": "Ramirez",
 				"location": "La Guaira",
+				"latitude": [10.599, -66.9346],
 				"locationUrl": "https://maps.app.goo.gl/eUBhhZpb8uyDKyKC7",
 				"img": "./familyPictures/laGuaira.jpg"
 			},
@@ -97,6 +106,7 @@
 				"name": "Iglesia Bautista La Antorcha",
 				"family": "Perez",
 				"location": "Carayaca",
+				"latitude": [10.53299, -67.11821],
 				"img": "./familyPictures/carayaca.jpg"
 			},
 			{
@@ -104,6 +114,7 @@
 				"name": "Iglesia Bautista Roca Firme",
 				"family": "Diaz",
 				"location": "Catia La Mar",
+				"latitude": [10.6038, -67.0303],
 				"img": "./familyPictures/catiaLaMar.jpg"
 			}
 		]
@@ -113,6 +124,7 @@
 		"name": "IBB Maracaibo",
 		"family": "Ferrer",
 		"location": "Maracaibo",
+		"region": "Zulia",
 		"latitude": [10.641, -71.6074],
 		"img": "./familyPictures/maracaibo.jpg"
 	},
@@ -121,6 +133,7 @@
 		"name": "Iglesia Bautista de Juangriego",
 		"family": "Bolivar",
 		"location": "Margarita",
+		"region": "Nueva Esparta",
 		"latitude": [11.0826, -63.9675],
 		"img": "./familyPictures/juangriego.jpg"
 	},
@@ -129,6 +142,7 @@
 		"name": "IBB Valencia",
 		"family": "Castillo",
 		"location": "Valencia, Carabobo",
+		"region": "Carabobo",
 		"locationUrl": "https://maps.app.goo.gl/EgmizJ2twRWQM3vJ8",
 		"latitude": [10.1579, -67.9972],
 		"img": "./familyPictures/valencia.jpg",
@@ -148,6 +162,7 @@
 		"name": "Iglesia Bautista Biblia para Todos",
 		"family": "Tremaria",
 		"location": "Tachira, San Cristobal",
+		"region": "Táchira",
 		"locationUrl": "https://maps.app.goo.gl/dc8Vr3oVeziG1Sex8",
 		"latitude": [7.9137, -72.1416],
 		"img": "./familyPictures/tachira.jpg"
@@ -157,6 +172,7 @@
 		"name": "Igleisa Biblica Bautista de Caripito",
 		"family": "Toro",
 		"location": "Caripito, Monagas",
+		"region": "Monagas",
 		"latitude": [10.1073, -63.1031],
 		"img": "./familyPictures/caripito.jpg"
 	},
@@ -165,6 +181,7 @@
 		"name": "Igleisa Biblica Bautista de Puerto Ayacucho",
 		"family": "Hernandez",
 		"location": "Puerto Ayacucho, Amazonas",
+		"region": "Amazonas",
 		"latitude": [5.6615, -67.5828],
 		"img": "./familyPictures/puertoAyacucho.jpg"
 	},
@@ -173,6 +190,7 @@
 		"name": "Igleisa Bautista Casa de Dios",
 		"family": "Parra",
 		"location": "San Fernando de Apure",
+		"region": "Apure",
 		"latitude": [7.8807, -67.4695],
 		"img": "./familyPictures/sanFernando.jpg"
 	},
@@ -181,15 +199,16 @@
 		"name": "Igleisa Bautista de Los Teques",
 		"family": "Main",
 		"location": "Los Teques",
+		"region": "Miranda",
 		"latitude": [10.3492, -67.0345],
 		"img": "./familyPictures/losTeques.jpg"
 	},
-
 	{
 		"id": "cua",
 		"name": "Igleisa Biblica Bautista La Preciosa Semilla",
 		"family": "Rojas",
 		"location": "Cua",
+		"region": "Miranda",
 		"latitude": [10.1709, -66.8916],
 		"locationUrl": "https://maps.app.goo.gl/Y2STAcXG8smCGxp98",
 		"img": "./familyPictures/cua.jpg"
@@ -199,6 +218,7 @@
 		"name": "Iglesia Bíblica Bautista Libertad",
 		"family": "Quilarque",
 		"location": "Guacara",
+		"region": "Carabobo",
 		"latitude": [10.2647, -67.8927],
 		"img": "./familyPictures/guacara.jpg",
 		"socials": [

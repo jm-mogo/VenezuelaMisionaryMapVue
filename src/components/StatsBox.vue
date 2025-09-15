@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-	totalStates: number;
+	totalRegions: number; // CHANGED from totalStates
 	totalChurches: number;
 }>();
 </script>
@@ -13,8 +13,9 @@ defineProps<{
 		</div>
 		<div class="stat-divider"></div>
 		<div class="stat-item">
-			<span class="stat-number">{{ totalStates }}</span>
-			<span class="stat-label">Regiones</span>
+			<span class="stat-number">{{ totalRegions }}</span>
+			<span class="stat-label">Estados</span>
+			<!-- CHANGED from Regiones -->
 		</div>
 	</div>
 </template>
@@ -61,3 +62,5 @@ defineProps<{
 	background-color: #e2e8f0;
 }
 </style>
+``` And that's it! Your stats box will now show a more accurate count of the
+unique Venezuelan states represented on the map.

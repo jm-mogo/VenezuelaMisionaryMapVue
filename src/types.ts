@@ -21,6 +21,7 @@ export interface State {
 	id: string;
 	name: string;
 	latitude: [number, number];
+	region: string; // <-- NEW PROPERTY
 	multiChurchState?: boolean;
 	churches?: Church[];
 	family?: string;
@@ -28,4 +29,11 @@ export interface State {
 	img?: string;
 	locationUrl?: string;
 	socials?: Social[];
+}
+
+// Defines the structure for a search result
+export interface SearchResult {
+	state: State;
+	church: Church;
+	isRegion: boolean;
 }

@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
-import { ref } from "vue";
-import type { State } from "../types";
+import type { State, Church } from "../types"; // Import Church type
 import statesData from "../states.json";
-import { latLngBounds } from "leaflet"; // Import latLngBounds for map boundaries
+import { latLngBounds } from "leaflet";
 
+// We now define THREE events to be emitted
 const emit = defineEmits<{
 	(e: "marker-click", state: State): void;
+	(e: "update:zoom", value: number): void;
+	// NEW: Event for when a split, individual church marker is clicked
+	(e: "church-marker-click", payload: { state: State; church: Church }): void;
 }>();
 
-// --- Map Configuration ---
-const zoom = ref(6);
+const props = defineProps<{
+	center: [number, number];
+	zoom: number;
+}>();
 
-// FIX #1: Corrected Longitude from -6.5897 to -66.5897
-const center = ref<[number, number]>([8.5238, -66.5897]);
+// NEW: Define the zoom level at which multi-church markers split
+const SPLIT_ZOOM_LEVEL = 9;
 
-// FIX #3: Define the boundaries for the map view
-// This creates a bounding box around Venezuela so users can't pan too far away.
 const venezuelaBounds = latLngBounds(
 	[0, -74], // Southwest corner (approximate)
 	[12, -59] // Northeast corner (approximate)
@@ -31,10 +34,11 @@ const attribution =
 	<div class="map-container">
 		<l-map
 			ref="map"
-			v-model:zoom="zoom"
 			:center="center"
+			:zoom="zoom"
+			@update:zoom="$emit('update:zoom', $event)"
 			:min-zoom="5"
-			:max-zoom="10"
+			:max-zoom="12"
 			:max-bounds="venezuelaBounds"
 		>
 			<l-tile-layer
@@ -44,13 +48,42 @@ const attribution =
 				name="OpenStreetMap"
 			></l-tile-layer>
 
-			<l-marker
-				v-for="state in (statesData as State[])"
-				:key="state.id"
-				:lat-lng="state.latitude"
-				@click="emit('marker-click', state)"
-			>
-			</l-marker>
+			<!-- NEW: Restructured marker rendering logic -->
+			<template v-for="state in (statesData as State[])" :key="state.id">
+				<!-- Case 1: Always render markers for single-church states -->
+				<l-marker
+					v-if="!state.multiChurchState"
+					:lat-lng="state.latitude"
+					@click="emit('marker-click', state)"
+				>
+				</l-marker>
+
+				<!-- Case 2: Render the single REGION marker when zoomed OUT -->
+				<l-marker
+					v-if="state.multiChurchState && zoom < SPLIT_ZOOM_LEVEL"
+					:lat-lng="state.latitude"
+					@click="emit('marker-click', state)"
+				>
+				</l-marker>
+
+				<!-- Case 3: Render INDIVIDUAL church markers when zoomed IN -->
+				<template
+					v-if="state.multiChurchState && zoom >= SPLIT_ZOOM_LEVEL"
+				>
+					<l-marker
+						v-for="church in state.churches"
+						:key="church.id"
+						:lat-lng="church.latitude"
+						@click="
+							emit('church-marker-click', {
+								state: state,
+								church: church,
+							})
+						"
+					>
+					</l-marker>
+				</template>
+			</template>
 		</l-map>
 	</div>
 </template>

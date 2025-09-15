@@ -1,49 +1,91 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import type { Church, State } from "./types";
+import type { Church, State, SearchResult } from "./types";
 import statesData from "./states.json";
 
-// Import all components
+import { inject } from "@vercel/analytics";
+
+inject();
+
+// ... (all other imports)
 import MapComponent from "./components/MapComponent.vue";
 import ModalComponent from "./components/ModalComponent.vue";
 import ChurchCard from "./components/ChurchCard.vue";
 import MultiChurchList from "./components/MultiChurchList.vue";
 import StatsBox from "./components/StatsBox.vue";
+import SearchComponent from "./components/SearchComponent.vue";
 
-// --- State Management ---
-// State for the Church Modal
+// ... (all state management refs)
 const isChurchModalOpen = ref(false);
 const selectedState = ref<State | null>(null);
 const displayedChurch = ref<Church | null>(null);
-
-// NEW: State for the "About" Modal
 const isAboutModalOpen = ref(false);
+const mapCenter = ref<[number, number]>([8.5238, -66.5897]);
+const mapZoom = ref(6);
 
-// --- Event Handlers for Church Modal ---
+// ... (all event handlers)
 const handleMarkerClick = (state: State) => {
 	selectedState.value = state;
 	if (!state.multiChurchState) {
 		displayedChurch.value = state as Church;
+	} else {
+		displayedChurch.value = null;
+	}
+	isChurchModalOpen.value = true;
+};
+
+const handleChurchMarkerClick = (payload: { state: State; church: Church }) => {
+	selectedState.value = payload.state;
+	displayedChurch.value = payload.church;
+	isChurchModalOpen.value = true;
+};
+
+const handleSearchResultSelected = (result: SearchResult) => {
+	selectedState.value = result.state;
+	if (result.isRegion) {
+		displayedChurch.value = null;
+		// mapCenter.value = result.state.latitude;
+		// mapZoom.value = 8;
+	} else {
+		displayedChurch.value = result.church;
+		// mapCenter.value = result.church.latitude;
+		// mapZoom.value = 10;
 	}
 	isChurchModalOpen.value = true;
 };
 
 const handleChurchSelection = (church: Church) => {
 	displayedChurch.value = church;
+	mapCenter.value = church.latitude;
+	mapZoom.value = 10;
 };
 
 const handleGoBack = () => {
 	displayedChurch.value = null;
+	if (selectedState.value) {
+		// mapCenter.value = selectedState.value.latitude;
+		// mapZoom.value = 8;
+	}
 };
 
 const handleCloseChurchModal = () => {
 	isChurchModalOpen.value = false;
 	selectedState.value = null;
 	displayedChurch.value = null;
+	// mapCenter.value = [8.5238, -66.5897];
+	// mapZoom.value = 6;
 };
 
 // --- Statistics Calculation ---
-const totalRegions = computed(() => statesData.length);
+// NEW: Logic to count unique regions
+const totalUniqueRegions = computed(() => {
+	// Create a Set of all region strings to automatically get unique values
+	const uniqueRegions = new Set(
+		(statesData as State[]).map((state) => state.region)
+	);
+	return uniqueRegions.size;
+});
+
 const totalChurches = computed(() => {
 	return (statesData as State[]).reduce((count, state) => {
 		if (state.multiChurchState && state.churches) {
@@ -57,14 +99,19 @@ const totalChurches = computed(() => {
 <template>
 	<main class="app-container">
 		<header>
-			<h1>Mapa Misionero de Venezuela</h1>
-
-			<!-- NEW: "About" Button in the header -->
+			<div class="header-left">
+				<h1>Mapa Misionero de Venezuela</h1>
+				<SearchComponent
+					:states="(statesData as State[])"
+					@result-selected="handleSearchResultSelected"
+				/>
+			</div>
 			<button
 				@click="isAboutModalOpen = true"
 				class="about-button"
 				title="Acerca de este proyecto"
 			>
+				<!-- SVG icon -->
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"
@@ -80,9 +127,15 @@ const totalChurches = computed(() => {
 		</header>
 
 		<div class="map-wrapper">
-			<MapComponent @marker-click="handleMarkerClick" />
+			<!-- NEW: Added the @church-marker-click listener -->
+			<MapComponent
+				:center="mapCenter"
+				v-model:zoom="mapZoom"
+				@marker-click="handleMarkerClick"
+				@church-marker-click="handleChurchMarkerClick"
+			/>
 			<StatsBox
-				:total-states="totalRegions"
+				:total-regions="totalUniqueRegions"
 				:total-churches="totalChurches"
 			/>
 		</div>
@@ -113,11 +166,12 @@ const totalChurches = computed(() => {
 			</div>
 		</ModalComponent>
 
-		<!-- NEW: "About" Project Modal -->
+		<!-- "About" Project Modal -->
 		<ModalComponent
 			:isOpen="isAboutModalOpen"
 			@close="isAboutModalOpen = false"
 		>
+			<!-- About modal content -->
 			<div class="about-modal-content">
 				<h2 class="about-title">Acerca del Proyecto</h2>
 				<p class="about-text">
@@ -126,9 +180,7 @@ const totalChurches = computed(() => {
 					herramienta para miembros, visitantes y cualquiera
 					interesado en encontrar una congregación cercana.
 				</p>
-
 				<div class="separator"></div>
-
 				<h2 class="about-title">Sobre el Desarrollador</h2>
 				<p class="about-text" style="text-align: center">
 					¡Hola! Soy <strong>José M. Mogollón</strong>, un
@@ -155,7 +207,7 @@ const totalChurches = computed(() => {
 </template>
 
 <style>
-/* ... body, .app-container styles ... */
+/* All styles remain the same */
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -168,25 +220,29 @@ body {
 	height: 100vh;
 	overflow: hidden;
 }
-
-/* --- Updated Header Style --- */
 header {
-	display: flex; /* Use flexbox to align title and button */
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0.8rem 1.5rem;
 	background-color: white;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	z-index: 10;
+	z-index: 900;
 	flex-shrink: 0;
+	gap: 20px;
 }
-
+.header-left {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex-grow: 1;
+}
 h1 {
 	margin: 0;
-	font-size: 1.5rem; /* Slightly smaller to fit button */
+	font-size: 1.5rem;
 	color: #333;
+	white-space: nowrap;
 }
-
 .about-button {
 	background: none;
 	border: none;
@@ -196,6 +252,7 @@ h1 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-shrink: 0;
 }
 .about-button svg {
 	width: 28px;
@@ -206,13 +263,10 @@ h1 {
 .about-button:hover svg {
 	color: #333;
 }
-
 .map-wrapper {
 	flex-grow: 1;
 	position: relative;
 }
-
-/* ... back-button styles ... */
 .back-button {
 	background: #f8f8f8;
 	border: 1px solid #ddd;
@@ -227,8 +281,6 @@ h1 {
 .back-button:hover {
 	background-color: #e9e9e9;
 }
-
-/* --- NEW: "About" Modal Content Styles --- */
 .about-modal-content {
 	font-family: sans-serif;
 	color: #333;
@@ -264,26 +316,17 @@ h1 {
 .developer-links a:hover {
 	text-decoration: underline;
 }
-/* REMOVE THESE STYLES */
-.developer-intro {
-	text-align: center;
-	margin-bottom: 1.5rem;
-}
-.developer-intro p {
-	margin: 0;
-	font-size: 1rem;
-	color: #6c757d;
-}
-.developer-intro h3 {
-	margin: 0.25rem 0;
-	font-size: 2rem;
-	font-weight: 700;
-	color: #212529;
-}
-.developer-bio {
-	text-align: center;
-	max-width: 450px;
-	margin-left: auto;
-	margin-right: auto;
+@media (max-width: 768px) {
+	.header-left {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+	h1 {
+		font-size: 1.2rem;
+	}
+	header {
+		padding: 0.8rem 1rem;
+	}
 }
 </style>
