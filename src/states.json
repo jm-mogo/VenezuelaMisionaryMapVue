@@ -138,22 +138,56 @@
 		"img": "./familyPictures/juangriego.jpg"
 	},
 	{
-		"id": "valencia",
-		"name": "IBB Valencia",
-		"family": "Castillo",
-		"location": "Valencia, Carabobo",
+		"id": "carabobo",
+		"name": "Carabobo",
+		"multiChurchState": true,
 		"region": "Carabobo",
-		"locationUrl": "https://maps.app.goo.gl/EgmizJ2twRWQM3vJ8",
 		"latitude": [10.1579, -67.9972],
-		"img": "./familyPictures/valencia.jpg",
-		"socials": [
+		"churches": [
 			{
-				"name": "instagram",
-				"socialUrl": "https://www.instagram.com/ibbvalencia/"
+				"id": "valencia",
+				"name": "IBB Valencia",
+				"family": "Castillo",
+				"location": "Valencia",
+				"latitude": [10.1579, -67.9972],
+				"img": "./familyPictures/valencia.jpg",
+				"locationUrl": "https://maps.app.goo.gl/EgmizJ2twRWQM3vJ8",
+				"socials": [
+					{
+						"name": "instagram",
+						"socialUrl": "https://www.instagram.com/ibbvalencia/"
+					},
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/IglesiaBiblicaBautistaValencia"
+					}
+				]
 			},
 			{
-				"name": "facebook",
-				"socialUrl": "https://www.facebook.com/IglesiaBiblicaBautistaValencia"
+				"id": "guacara",
+				"name": "Iglesia Bíblica Bautista Libertad",
+				"family": "Quilarque",
+				"location": "Guacara",
+				"latitude": [10.2647, -67.8927],
+				"img": "./familyPictures/guacara.jpg",
+				"socials": [
+					{
+						"name": "instagram",
+						"socialUrl": "https://www.instagram.com/ibbl_2003"
+					},
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/IBBLIBERTAD/"
+					}
+				]
+			},
+			{
+				"id": "naguanagua",
+				"name": "IBB \"Una Esperanza Viva\"",
+				"family": "Guzmán",
+				"location": "Naguanagua",
+				"latitude": [10.258, -68.01],
+				"img": "./familyPictures/placeholder.svg"
 			}
 		]
 	},
@@ -214,27 +248,8 @@
 		"img": "./familyPictures/cua.jpg"
 	},
 	{
-		"id": "guacara",
-		"name": "Iglesia Bíblica Bautista Libertad",
-		"family": "Quilarque",
-		"location": "Guacara",
-		"region": "Carabobo",
-		"latitude": [10.2647, -67.8927],
-		"img": "./familyPictures/guacara.jpg",
-		"socials": [
-			{
-				"name": "instagram",
-				"socialUrl": "https://www.instagram.com/ibbl_2003"
-			},
-			{
-				"name": "facebook",
-				"socialUrl": "https://www.facebook.com/IBBLIBERTAD/"
-			}
-		]
-	},
-	{
 		"id": "carrizal",
-		"name": "IBB Toma tu Cruz",
+		"name": "IBB \"Toma tu Cruz\"",
 		"family": "Arellano",
 		"location": "Carrizal",
 		"region": "Miranda",
@@ -248,15 +263,6 @@
 		"location": "Boconó",
 		"region": "Trujillo",
 		"latitude": [9.245, -70.254],
-		"img": "./familyPictures/placeholder.svg"
-	},
-	{
-		"id": "naguanagua",
-		"name": "IBB Una Esperanza Viva",
-		"family": "Guzmán",
-		"location": "Naguanagua",
-		"region": "Carabobo",
-		"latitude": [10.258, -68.01],
 		"img": "./familyPictures/placeholder.svg"
 	}
 ]
