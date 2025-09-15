@@ -231,5 +231,32 @@
 				"socialUrl": "https://www.facebook.com/IBBLIBERTAD/"
 			}
 		]
+	},
+	{
+		"id": "carrizal",
+		"name": "IBB Toma tu Cruz",
+		"family": "Arellano",
+		"location": "Carrizal",
+		"region": "Miranda",
+		"latitude": [10.3533, -66.985],
+		"img": "./familyPictures/placeholder.svg"
+	},
+	{
+		"id": "bocono",
+		"name": "IBB Monte Sinai",
+		"family": "Gonzáles",
+		"location": "Boconó",
+		"region": "Trujillo",
+		"latitude": [9.245, -70.254],
+		"img": "./familyPictures/placeholder.svg"
+	},
+	{
+		"id": "naguanagua",
+		"name": "IBB Una Esperanza Viva",
+		"family": "Guzmán",
+		"location": "Naguanagua",
+		"region": "Carabobo",
+		"latitude": [10.258, -68.01],
+		"img": "./familyPictures/placeholder.svg"
 	}
 ]

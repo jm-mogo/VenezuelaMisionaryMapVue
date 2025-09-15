@@ -1,0 +1,16 @@
+<svg width="400" height="500" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif">
+  <rect width="100%" height="100%" fill="#E9ECEF"/>
+  <text
+    x="50%"
+    y="50%"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    fill="#6C757D"
+    font-size="20px"
+    font-weight="500"
+    style="line-height: 1.5;"
+  >
+    <tspan x="50%" dy="-1.2em">Ninguna foto ha sido</tspan>
+    <tspan x="50%" dy="1.2em">subida aún</tspan>
+  </text>
+</svg>
