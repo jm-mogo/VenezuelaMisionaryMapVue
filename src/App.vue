@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch, onMounted } from "vue"; // NEW: Import watch and onMounted
 import type { Church, State, SearchResult } from "./types";
 import statesData from "./states.json";
 
@@ -7,7 +7,6 @@ import { inject } from "@vercel/analytics";
 
 inject();
 
-// ... (all other imports)
 import MapComponent from "./components/MapComponent.vue";
 import ModalComponent from "./components/ModalComponent.vue";
 import ChurchCard from "./components/ChurchCard.vue";
@@ -15,7 +14,6 @@ import MultiChurchList from "./components/MultiChurchList.vue";
 import StatsBox from "./components/StatsBox.vue";
 import SearchComponent from "./components/SearchComponent.vue";
 
-// ... (all state management refs)
 const isChurchModalOpen = ref(false);
 const selectedState = ref<State | null>(null);
 const displayedChurch = ref<Church | null>(null);
@@ -23,7 +21,6 @@ const isAboutModalOpen = ref(false);
 const mapCenter = ref<[number, number]>([8.5238, -66.5897]);
 const mapZoom = ref(6);
 
-// ... (all event handlers)
 const handleMarkerClick = (state: State) => {
 	selectedState.value = state;
 	if (!state.multiChurchState) {
@@ -44,42 +41,27 @@ const handleSearchResultSelected = (result: SearchResult) => {
 	selectedState.value = result.state;
 	if (result.isRegion) {
 		displayedChurch.value = null;
-		// mapCenter.value = result.state.latitude;
-		// mapZoom.value = 8;
 	} else {
 		displayedChurch.value = result.church;
-		// mapCenter.value = result.church.latitude;
-		// mapZoom.value = 10;
 	}
 	isChurchModalOpen.value = true;
 };
 
 const handleChurchSelection = (church: Church) => {
 	displayedChurch.value = church;
-	mapCenter.value = church.latitude;
-	mapZoom.value = 10;
 };
 
 const handleGoBack = () => {
 	displayedChurch.value = null;
-	if (selectedState.value) {
-		// mapCenter.value = selectedState.value.latitude;
-		// mapZoom.value = 8;
-	}
 };
 
 const handleCloseChurchModal = () => {
 	isChurchModalOpen.value = false;
 	selectedState.value = null;
 	displayedChurch.value = null;
-	// mapCenter.value = [8.5238, -66.5897];
-	// mapZoom.value = 6;
 };
 
-// --- Statistics Calculation ---
-// NEW: Logic to count unique regions
 const totalUniqueRegions = computed(() => {
-	// Create a Set of all region strings to automatically get unique values
 	const uniqueRegions = new Set(
 		(statesData as State[]).map((state) => state.region)
 	);
@@ -93,6 +75,57 @@ const totalChurches = computed(() => {
 		}
 		return count + 1;
 	}, 0);
+});
+
+// --- NEW: Deep Linking Logic ---
+
+// Watch for changes in the displayed church to update the URL hash
+watch(displayedChurch, (newChurch) => {
+	if (newChurch && selectedState.value) {
+		const regionId = selectedState.value.id;
+		const churchId = newChurch.id;
+		// For single-church states, regionId and churchId will be the same
+		const hash =
+			regionId === churchId ? `#${churchId}` : `#${regionId}/${churchId}`;
+		history.pushState(null, "", hash);
+	} else if (!newChurch && !isChurchModalOpen.value) {
+		// Only clear hash if the modal is also closed
+		history.pushState(null, "", " ");
+	}
+});
+
+// Watch for modal close to clear the hash
+watch(isChurchModalOpen, (isOpen) => {
+	if (!isOpen) {
+		history.pushState(null, "", " ");
+	}
+});
+
+// On page load, check the URL hash to open a specific church modal
+onMounted(() => {
+	const hash = window.location.hash.slice(1); // Remove the '#'
+	if (!hash) return;
+
+	const ids = hash.split("/");
+	const regionId = ids[0];
+	const churchId = ids.length > 1 ? ids[1] : regionId;
+
+	// Find the state and church corresponding to the IDs
+	const foundState = (statesData as State[]).find((s) => s.id === regionId);
+	if (!foundState) return;
+
+	let foundChurch: Church | undefined;
+	if (foundState.multiChurchState && foundState.churches) {
+		foundChurch = foundState.churches.find((c) => c.id === churchId);
+	} else {
+		foundChurch = foundState as Church;
+	}
+
+	if (foundChurch) {
+		selectedState.value = foundState;
+		displayedChurch.value = foundChurch;
+		isChurchModalOpen.value = true;
+	}
 });
 </script>
 

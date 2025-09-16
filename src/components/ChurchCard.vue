@@ -1,14 +1,40 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import type { Church } from "../types";
 
-defineProps<{
+const props = defineProps<{
 	church: Church;
 }>();
+
+const showCopyMessage = ref(false);
+
+const shareChurch = async () => {
+	const shareUrl = window.location.href;
+	const shareData = {
+		title: `Mapa Misionero: ${props.church.name}`,
+		text: `Echa un vistazo a la información sobre la ${props.church.name}, pastoreada por la familia ${props.church.family}.`,
+		url: shareUrl,
+	};
+
+	try {
+		if (navigator.share) {
+			await navigator.share(shareData);
+		} else {
+			await navigator.clipboard.writeText(shareUrl);
+			showCopyMessage.value = true;
+			setTimeout(() => {
+				showCopyMessage.value = false;
+			}, 2000);
+		}
+	} catch (err) {
+		console.error("Error al compartir:", err);
+		alert("No se pudo copiar el enlace.");
+	}
+};
 </script>
 
 <template>
 	<div class="church-card">
-		<!-- Image is now inside the main content area -->
 		<img
 			:src="church.img"
 			:alt="'Familia ' + church.family"
@@ -21,17 +47,17 @@ defineProps<{
 		</div>
 
 		<div class="card-footer">
+			<!-- Section 1: Contact Links -->
 			<span class="footer-title">Contacto y Ubicación:</span>
 			<div class="links-container">
 				<a
-					v-if="church.locationUrl"
+					vif="church.locationUrl"
 					:href="church.locationUrl"
 					target="_blank"
 					class="icon-link location-link"
 				>
 					<img src="/location.png" alt="Mapa" class="icon" />
 				</a>
-
 				<a
 					v-for="social in church.socials"
 					:key="social.name"
@@ -40,18 +66,40 @@ defineProps<{
 					class="icon-link"
 				>
 					<img
-						v-if="social.name === 'instagram'"
+						vif="social.name === 'instagram'"
 						src="/instagram.png"
 						alt="Instagram"
 						class="icon"
 					/>
 					<img
-						v-if="social.name === 'facebook'"
+						vif="social.name === 'facebook'"
 						src="/facebook.png"
 						alt="Facebook"
 						class="icon"
 					/>
+					<img
+						vif="social.name === 'youtube'"
+						src="/youtube.png"
+						alt="YouTube"
+						class="icon"
+					/>
 				</a>
+			</div>
+
+			<!-- NEW: Visual separator -->
+			<div class="separator"></div>
+
+			<!-- NEW: Section 2: Share Button -->
+			<div class="share-section">
+				<span class="footer-title">Compartir esta iglesia</span>
+				<button @click="shareChurch" class="icon-link share-button">
+					<img src="/share.svg" alt="Compartir" class="icon" />
+				</button>
+			</div>
+
+			<!-- "Copied" feedback message -->
+			<div v-if="showCopyMessage" class="copy-feedback">
+				¡Enlace copiado!
 			</div>
 		</div>
 	</div>
@@ -61,21 +109,20 @@ defineProps<{
 .church-card {
 	font-family: sans-serif;
 	text-align: center;
-	background-color: #ffffff; /* Change back to a clean white */
+	background-color: #ffffff;
 	border-radius: 12px;
 	overflow: hidden;
 	border: 1px solid #e9ecef;
-	padding-top: 24px; /* Add padding at the top */
+	padding-top: 24px;
 }
 
 .family-picture {
-	/* This is the key change for portrait images */
-	max-width: 80%; /* Don't let the image touch the card edges */
-	max-height: 300px; /* Keep the original max-height */
-	height: auto; /* Let the height adjust to maintain aspect ratio */
-	border-radius: 8px; /* Give the image itself rounded corners */
+	max-width: 80%;
+	max-height: 300px;
+	height: auto;
+	border-radius: 8px;
 	display: block;
-	margin: 0 auto; /* Center the image horizontally */
+	margin: 0 auto;
 }
 
 .card-content {
@@ -96,7 +143,8 @@ defineProps<{
 }
 
 .card-footer {
-	background-color: #f8f9fa; /* Move the light grey to the footer */
+	position: relative;
+	background-color: #f8f9fa;
 	padding: 16px 20px;
 	border-top: 1px solid #e9ecef;
 }
@@ -120,6 +168,13 @@ defineProps<{
 	display: inline-block;
 }
 
+.share-button {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
 .icon {
 	width: 36px;
 	height: 36px;
@@ -128,5 +183,51 @@ defineProps<{
 
 .icon:hover {
 	transform: scale(1.15);
+}
+
+/* NEW: Style for the separator */
+.separator {
+	height: 1px;
+	background-color: #e9ecef;
+	margin: 20px auto; /* Adds space above and below, and centers */
+	width: 80%; /* Don't let it touch the edges */
+}
+
+/* NEW: Wrapper for the share section */
+/* .share-section {
+	
+} */
+
+.copy-feedback {
+	position: absolute;
+	bottom: -40px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #28a745;
+	color: white;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-size: 0.9rem;
+	font-weight: 500;
+	animation: fade-in-out 2s ease-in-out;
+}
+
+@keyframes fade-in-out {
+	0% {
+		opacity: 0;
+		transform: translateX(-50%) translateY(-10px);
+	}
+	20% {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+	80% {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-50%) translateY(-10px);
+	}
 }
 </style>

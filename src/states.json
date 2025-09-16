@@ -31,6 +31,10 @@
 					{
 						"name": "facebook",
 						"socialUrl": "https://www.facebook.com/IglesiaBBVistaAlegre"
+					},
+					{
+						"name": "youtube",
+						"socialUrl": "https://www.youtube.com/@Ibbva"
 					}
 				]
 			},
@@ -82,6 +86,15 @@
 						"socialUrl": "https://www.instagram.com/ibblaesperanza/"
 					}
 				]
+			},
+			{
+				"id": "laFlorida",
+				"name": "Iglesia Bíblica Misionera El Cristo",
+				"family": "Parra",
+				"location": "La Florida",
+				"latitude": [10.499, -66.883],
+				"locationUrl": "https://maps.app.goo.gl/4FCahPz4qZhD4irVA",
+				"img": "./familyPictures/laFlorida.jpg"
 			}
 		]
 	},
@@ -120,29 +133,61 @@
 		]
 	},
 	{
-		"id": "maracaibo",
-		"name": "IBB Maracaibo",
-		"family": "Ferrer",
-		"location": "Maracaibo",
-		"region": "Zulia",
-		"latitude": [10.641, -71.6074],
-		"img": "./familyPictures/maracaibo.jpg"
+		"id": "altosMirandinos",
+		"name": "Altos Mirandinos",
+		"multiChurchState": true,
+		"region": "Miranda",
+		"latitude": [10.349, -67.01],
+		"churches": [
+			{
+				"id": "losTeques",
+				"name": "Igleisa Bautista de Los Teques",
+				"family": "Main",
+				"location": "Los Teques",
+				"latitude": [10.3492, -67.0345],
+				"img": "./familyPictures/losTeques.jpg"
+			},
+			{
+				"id": "carrizal",
+				"name": "IBB \"Toma tu Cruz\"",
+				"family": "Arellano",
+				"location": "Carrizal",
+				"latitude": [10.3533, -66.985],
+				"img": "./familyPictures/carrizal.jpg",
+				"locationUrl": "https://maps.app.goo.gl/33hmKUwkJu9Wazpd8",
+				"socials": [
+					{
+						"name": "instagram",
+						"socialUrl": "https://www.instagram.com/ibbtomatucruz?igsh=MWVxNGxhODhlenB4dw=="
+					},
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/profile.php?id=100080491516873"
+					},
+					{
+						"name": "youtube",
+						"socialUrl": "https://youtube.com/@ibbtomatucruz?si=IeS04tyGwOp7v3W0"
+					}
+				]
+			}
+		]
 	},
 	{
-		"id": "juangriego",
-		"name": "Iglesia Bautista de Juangriego",
-		"family": "Bolivar",
-		"location": "Margarita",
-		"region": "Nueva Esparta",
-		"latitude": [11.0826, -63.9675],
-		"img": "./familyPictures/juangriego.jpg"
+		"id": "cua",
+		"name": "Igleisa Biblica Bautista La Preciosa Semilla",
+		"family": "Rojas",
+		"location": "Cua",
+		"region": "Miranda",
+		"latitude": [10.1709, -66.8916],
+		"locationUrl": "https://maps.app.goo.gl/Y2STAcXG8smCGxp98",
+		"img": "./familyPictures/cua.jpg"
 	},
 	{
 		"id": "carabobo",
 		"name": "Carabobo",
 		"multiChurchState": true,
 		"region": "Carabobo",
-		"latitude": [10.1579, -67.9972],
+		"latitude": [10.21, -67.96],
 		"churches": [
 			{
 				"id": "valencia",
@@ -160,6 +205,10 @@
 					{
 						"name": "facebook",
 						"socialUrl": "https://www.facebook.com/IglesiaBiblicaBautistaValencia"
+					},
+					{
+						"name": "youtube",
+						"socialUrl": "https://www.youtube.com/@ibbvalencia"
 					}
 				]
 			},
@@ -183,13 +232,38 @@
 			},
 			{
 				"id": "naguanagua",
-				"name": "IBB \"Una Esperanza Viva\"",
+				"name": "IBB Una Esperanza Viva",
 				"family": "Guzmán",
 				"location": "Naguanagua",
 				"latitude": [10.258, -68.01],
-				"img": "./familyPictures/placeholder.svg"
+				"img": "./familyPictures/naguanagua.jpg",
+				"locationUrl": "https://maps.app.goo.gl/NtcXK33cwL9c7iCU9",
+				"socials": [
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/profile.php?id=61573793906420"
+					}
+				]
 			}
 		]
+	},
+	{
+		"id": "maracaibo",
+		"name": "IBB Maracaibo",
+		"family": "Ferrer",
+		"location": "Maracaibo",
+		"region": "Zulia",
+		"latitude": [10.641, -71.6074],
+		"img": "./familyPictures/maracaibo.jpg"
+	},
+	{
+		"id": "juangriego",
+		"name": "Iglesia Bautista de Juangriego",
+		"family": "Bolivar",
+		"location": "Margarita",
+		"region": "Nueva Esparta",
+		"latitude": [11.0826, -63.9675],
+		"img": "./familyPictures/juangriego.jpg"
 	},
 	{
 		"id": "tachira",
@@ -227,34 +301,6 @@
 		"region": "Apure",
 		"latitude": [7.8807, -67.4695],
 		"img": "./familyPictures/sanFernando.jpg"
-	},
-	{
-		"id": "losTeques",
-		"name": "Igleisa Bautista de Los Teques",
-		"family": "Main",
-		"location": "Los Teques",
-		"region": "Miranda",
-		"latitude": [10.3492, -67.0345],
-		"img": "./familyPictures/losTeques.jpg"
-	},
-	{
-		"id": "cua",
-		"name": "Igleisa Biblica Bautista La Preciosa Semilla",
-		"family": "Rojas",
-		"location": "Cua",
-		"region": "Miranda",
-		"latitude": [10.1709, -66.8916],
-		"locationUrl": "https://maps.app.goo.gl/Y2STAcXG8smCGxp98",
-		"img": "./familyPictures/cua.jpg"
-	},
-	{
-		"id": "carrizal",
-		"name": "IBB \"Toma tu Cruz\"",
-		"family": "Arellano",
-		"location": "Carrizal",
-		"region": "Miranda",
-		"latitude": [10.3533, -66.985],
-		"img": "./familyPictures/placeholder.svg"
 	},
 	{
 		"id": "bocono",

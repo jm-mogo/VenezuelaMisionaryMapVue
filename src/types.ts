@@ -1,6 +1,6 @@
 // Defines the structure for a social media link
 export interface Social {
-	name: "instagram" | "facebook";
+	name: "instagram" | "facebook" | "youtube"; // <-- ADDED YOUTUBE
 	socialUrl: string;
 }
 
@@ -21,7 +21,7 @@ export interface State {
 	id: string;
 	name: string;
 	latitude: [number, number];
-	region: string; // <-- NEW PROPERTY
+	region: string;
 	multiChurchState?: boolean;
 	churches?: Church[];
 	family?: string;
