@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from "vue"; // NEW: Import watch and onMounted
+import { ref, computed, watch, onMounted } from "vue";
 import type { Church, State, SearchResult } from "./types";
-import statesData from "./states.json";
+import locationsData from "./locations.json";
 
 import { inject } from "@vercel/analytics";
-
 inject();
 
 import MapComponent from "./components/MapComponent.vue";
@@ -13,13 +12,40 @@ import ChurchCard from "./components/ChurchCard.vue";
 import MultiChurchList from "./components/MultiChurchList.vue";
 import StatsBox from "./components/StatsBox.vue";
 import SearchComponent from "./components/SearchComponent.vue";
+import CountrySelector from "./components/CountrySelector.vue";
+
+const selectedCountry = ref("All");
+
+const countryViews: {
+	[key: string]: { center: [number, number]; zoom: number };
+} = {
+	All: { center: [7.5, -69.5], zoom: 5 },
+	Venezuela: { center: [8.5238, -66.5897], zoom: 6 },
+	Colombia: { center: [4.60971, -74.08175], zoom: 6 },
+};
 
 const isChurchModalOpen = ref(false);
 const selectedState = ref<State | null>(null);
 const displayedChurch = ref<Church | null>(null);
 const isAboutModalOpen = ref(false);
-const mapCenter = ref<[number, number]>([8.5238, -66.5897]);
-const mapZoom = ref(6);
+const mapCenter = ref<[number, number]>(countryViews.All.center);
+const mapZoom = ref(countryViews.All.zoom);
+
+const availableCountries = computed(() => {
+	const countries = new Set(
+		(locationsData as State[]).map((loc) => loc.country)
+	);
+	return ["All", ...Array.from(countries)];
+});
+
+const filteredLocations = computed(() => {
+	if (selectedCountry.value === "All") {
+		return locationsData as State[];
+	}
+	return (locationsData as State[]).filter(
+		(loc) => loc.country === selectedCountry.value
+	);
+});
 
 const handleMarkerClick = (state: State) => {
 	selectedState.value = state;
@@ -30,13 +56,11 @@ const handleMarkerClick = (state: State) => {
 	}
 	isChurchModalOpen.value = true;
 };
-
 const handleChurchMarkerClick = (payload: { state: State; church: Church }) => {
 	selectedState.value = payload.state;
 	displayedChurch.value = payload.church;
 	isChurchModalOpen.value = true;
 };
-
 const handleSearchResultSelected = (result: SearchResult) => {
 	selectedState.value = result.state;
 	if (result.isRegion) {
@@ -46,15 +70,12 @@ const handleSearchResultSelected = (result: SearchResult) => {
 	}
 	isChurchModalOpen.value = true;
 };
-
 const handleChurchSelection = (church: Church) => {
 	displayedChurch.value = church;
 };
-
 const handleGoBack = () => {
 	displayedChurch.value = null;
 };
-
 const handleCloseChurchModal = () => {
 	isChurchModalOpen.value = false;
 	selectedState.value = null;
@@ -63,13 +84,12 @@ const handleCloseChurchModal = () => {
 
 const totalUniqueRegions = computed(() => {
 	const uniqueRegions = new Set(
-		(statesData as State[]).map((state) => state.region)
+		filteredLocations.value.map((state) => state.region)
 	);
 	return uniqueRegions.size;
 });
-
 const totalChurches = computed(() => {
-	return (statesData as State[]).reduce((count, state) => {
+	return filteredLocations.value.reduce((count, state) => {
 		if (state.multiChurchState && state.churches) {
 			return count + state.churches.length;
 		}
@@ -77,41 +97,40 @@ const totalChurches = computed(() => {
 	}, 0);
 });
 
-// --- NEW: Deep Linking Logic ---
+watch(selectedCountry, (newCountry) => {
+	const view = countryViews[newCountry] || countryViews.All;
+	mapCenter.value = view.center;
+	mapZoom.value = view.zoom;
+});
 
-// Watch for changes in the displayed church to update the URL hash
 watch(displayedChurch, (newChurch) => {
 	if (newChurch && selectedState.value) {
 		const regionId = selectedState.value.id;
 		const churchId = newChurch.id;
-		// For single-church states, regionId and churchId will be the same
 		const hash =
 			regionId === churchId ? `#${churchId}` : `#${regionId}/${churchId}`;
 		history.pushState(null, "", hash);
 	} else if (!newChurch && !isChurchModalOpen.value) {
-		// Only clear hash if the modal is also closed
 		history.pushState(null, "", " ");
 	}
 });
 
-// Watch for modal close to clear the hash
 watch(isChurchModalOpen, (isOpen) => {
 	if (!isOpen) {
 		history.pushState(null, "", " ");
 	}
 });
 
-// On page load, check the URL hash to open a specific church modal
 onMounted(() => {
-	const hash = window.location.hash.slice(1); // Remove the '#'
+	const hash = window.location.hash.slice(1);
 	if (!hash) return;
-
 	const ids = hash.split("/");
 	const regionId = ids[0];
 	const churchId = ids.length > 1 ? ids[1] : regionId;
 
-	// Find the state and church corresponding to the IDs
-	const foundState = (statesData as State[]).find((s) => s.id === regionId);
+	const foundState = (locationsData as State[]).find(
+		(s) => s.id === regionId
+	);
 	if (!foundState) return;
 
 	let foundChurch: Church | undefined;
@@ -122,6 +141,7 @@ onMounted(() => {
 	}
 
 	if (foundChurch) {
+		selectedCountry.value = foundState.country;
 		selectedState.value = foundState;
 		displayedChurch.value = foundChurch;
 		isChurchModalOpen.value = true;
@@ -133,9 +153,13 @@ onMounted(() => {
 	<main class="app-container">
 		<header>
 			<div class="header-left">
-				<h1>Mapa Misionero de Venezuela</h1>
+				<h1>Mapa Misionero</h1>
+				<CountrySelector
+					:countries="availableCountries"
+					v-model="selectedCountry"
+				/>
 				<SearchComponent
-					:states="(statesData as State[])"
+					:states="filteredLocations"
 					@result-selected="handleSearchResultSelected"
 				/>
 			</div>
@@ -144,7 +168,6 @@ onMounted(() => {
 				class="about-button"
 				title="Acerca de este proyecto"
 			>
-				<!-- SVG icon -->
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"
@@ -160,10 +183,12 @@ onMounted(() => {
 		</header>
 
 		<div class="map-wrapper">
-			<!-- NEW: Added the @church-marker-click listener -->
+			<!-- THE FIX IS HERE: Add the :locations prop -->
 			<MapComponent
+				:key="selectedCountry"
 				:center="mapCenter"
 				v-model:zoom="mapZoom"
+				:locations="filteredLocations"
 				@marker-click="handleMarkerClick"
 				@church-marker-click="handleChurchMarkerClick"
 			/>
@@ -173,7 +198,6 @@ onMounted(() => {
 			/>
 		</div>
 
-		<!-- Church Details Modal -->
 		<ModalComponent
 			:isOpen="isChurchModalOpen"
 			@close="handleCloseChurchModal"
@@ -198,13 +222,10 @@ onMounted(() => {
 				</div>
 			</div>
 		</ModalComponent>
-
-		<!-- "About" Project Modal -->
 		<ModalComponent
 			:isOpen="isAboutModalOpen"
 			@close="isAboutModalOpen = false"
 		>
-			<!-- About modal content -->
 			<div class="about-modal-content">
 				<h2 class="about-title">Acerca del Proyecto</h2>
 				<p class="about-text">
@@ -240,7 +261,6 @@ onMounted(() => {
 </template>
 
 <style>
-/* All styles remain the same */
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -267,8 +287,9 @@ header {
 .header-left {
 	display: flex;
 	align-items: center;
-	gap: 20px;
+	gap: 16px;
 	flex-grow: 1;
+	flex-wrap: wrap;
 }
 h1 {
 	margin: 0;
@@ -349,7 +370,7 @@ h1 {
 .developer-links a:hover {
 	text-decoration: underline;
 }
-@media (max-width: 768px) {
+@media (max-width: 920px) {
 	.header-left {
 		flex-direction: column;
 		align-items: flex-start;

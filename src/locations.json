@@ -5,6 +5,7 @@
 		"family": "Mogollon",
 		"location": "Caja Seca",
 		"region": "Zulia",
+		"country": "Venezuela",
 		"latitude": [9.1518116, -71.0824613],
 		"img": "./familyPictures/cajaSeca.jpg"
 	},
@@ -13,6 +14,7 @@
 		"name": "Caracas",
 		"multiChurchState": true,
 		"region": "Distrito Capital",
+		"country": "Venezuela",
 		"latitude": [10.486651, -66.94913],
 		"churches": [
 			{
@@ -103,6 +105,7 @@
 		"name": "Vargas",
 		"multiChurchState": true,
 		"region": "La Guaira",
+		"country": "Venezuela",
 		"latitude": [10.589, -66.7367],
 		"churches": [
 			{
@@ -137,6 +140,7 @@
 		"name": "Altos Mirandinos",
 		"multiChurchState": true,
 		"region": "Miranda",
+		"country": "Venezuela",
 		"latitude": [10.349, -67.01],
 		"churches": [
 			{
@@ -178,6 +182,7 @@
 		"family": "Rojas",
 		"location": "Cua",
 		"region": "Miranda",
+		"country": "Venezuela",
 		"latitude": [10.1709, -66.8916],
 		"locationUrl": "https://maps.app.goo.gl/Y2STAcXG8smCGxp98",
 		"img": "./familyPictures/cua.jpg"
@@ -187,6 +192,7 @@
 		"name": "Carabobo",
 		"multiChurchState": true,
 		"region": "Carabobo",
+		"country": "Venezuela",
 		"latitude": [10.21, -67.96],
 		"churches": [
 			{
@@ -253,6 +259,7 @@
 		"family": "Ferrer",
 		"location": "Maracaibo",
 		"region": "Zulia",
+		"country": "Venezuela",
 		"latitude": [10.641, -71.6074],
 		"img": "./familyPictures/maracaibo.jpg"
 	},
@@ -262,6 +269,7 @@
 		"family": "Bolivar",
 		"location": "Margarita",
 		"region": "Nueva Esparta",
+		"country": "Venezuela",
 		"latitude": [11.0826, -63.9675],
 		"img": "./familyPictures/juangriego.jpg"
 	},
@@ -271,6 +279,7 @@
 		"family": "Tremaria",
 		"location": "Tachira, San Cristobal",
 		"region": "Táchira",
+		"country": "Venezuela",
 		"locationUrl": "https://maps.app.goo.gl/dc8Vr3oVeziG1Sex8",
 		"latitude": [7.9137, -72.1416],
 		"img": "./familyPictures/tachira.jpg"
@@ -281,6 +290,7 @@
 		"family": "Toro",
 		"location": "Caripito, Monagas",
 		"region": "Monagas",
+		"country": "Venezuela",
 		"latitude": [10.1073, -63.1031],
 		"img": "./familyPictures/caripito.jpg"
 	},
@@ -290,6 +300,7 @@
 		"family": "Hernandez",
 		"location": "Puerto Ayacucho, Amazonas",
 		"region": "Amazonas",
+		"country": "Venezuela",
 		"latitude": [5.6615, -67.5828],
 		"img": "./familyPictures/puertoAyacucho.jpg"
 	},
@@ -299,6 +310,7 @@
 		"family": "Parra",
 		"location": "San Fernando de Apure",
 		"region": "Apure",
+		"country": "Venezuela",
 		"latitude": [7.8807, -67.4695],
 		"img": "./familyPictures/sanFernando.jpg"
 	},
@@ -308,7 +320,34 @@
 		"family": "Gonzáles",
 		"location": "Boconó",
 		"region": "Trujillo",
+		"country": "Venezuela",
 		"latitude": [9.245, -70.254],
 		"img": "./familyPictures/placeholder.svg"
+	},
+	{
+		"id": "bogota",
+		"name": "Iglesia Bíblica Bautista Piedra Viva",
+		"family": "Gonzáles",
+		"location": "Bogotá",
+		"region": "Cundinamarca",
+		"country": "Colombia",
+		"latitude": [4.60971, -74.08175],
+		"img": "./familyPictures/placeholder.svg"
+	},
+	{
+		"id": "armenia",
+		"name": "Iglesia Bíblica Bautista Libertad",
+		"family": "Montenegro",
+		"location": "Armenia",
+		"region": "Quindío",
+		"country": "Colombia",
+		"latitude": [4.54, -75.66],
+		"img": "./familyPictures/armeniaQuindio.jpg",
+		"socials": [
+			{
+				"name": "facebook",
+				"socialUrl": "https://www.facebook.com/share/17Fb9eUFWz/"
+			}
+		]
 	}
 ]
