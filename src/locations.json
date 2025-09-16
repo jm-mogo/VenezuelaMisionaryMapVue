@@ -149,7 +149,13 @@
 				"family": "Main",
 				"location": "Los Teques",
 				"latitude": [10.3492, -67.0345],
-				"img": "./familyPictures/losTeques.jpg"
+				"img": "./familyPictures/losTeques.jpg",
+				"socials": [
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/profile.php?id=100072941445897&mibextid=rS40aB7S9Ucbxw6vs"
+					}
+				]
 			},
 			{
 				"id": "carrizal",

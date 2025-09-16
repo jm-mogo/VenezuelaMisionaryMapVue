@@ -82,12 +82,7 @@ const handleCloseChurchModal = () => {
 	displayedChurch.value = null;
 };
 
-const totalUniqueRegions = computed(() => {
-	const uniqueRegions = new Set(
-		filteredLocations.value.map((state) => state.region)
-	);
-	return uniqueRegions.size;
-});
+// --- Statistics Calculation ---
 const totalChurches = computed(() => {
 	return filteredLocations.value.reduce((count, state) => {
 		if (state.multiChurchState && state.churches) {
@@ -95,6 +90,25 @@ const totalChurches = computed(() => {
 		}
 		return count + 1;
 	}, 0);
+});
+
+// NEW: Dynamic count for the stats box
+const regionOrCountryCount = computed(() => {
+	if (selectedCountry.value === "All") {
+		// If "All" is selected, count the number of unique countries
+		return availableCountries.value.length - 1; // Subtract 1 for the "All" entry
+	} else {
+		// Otherwise, count the unique regions for the selected country
+		const uniqueRegions = new Set(
+			filteredLocations.value.map((state) => state.region)
+		);
+		return uniqueRegions.size;
+	}
+});
+
+// NEW: Dynamic label for the stats box
+const regionOrCountryLabel = computed(() => {
+	return selectedCountry.value === "All" ? "Países" : "Estados";
 });
 
 watch(selectedCountry, (newCountry) => {
@@ -169,7 +183,7 @@ onMounted(() => {
 				title="Acerca de este proyecto"
 			>
 				<svg
-					xmlns="http://www.w3.org/2000/svg"
+					xmlns="http://www.w.org/2000/svg"
 					viewBox="0 0 20 20"
 					fill="currentColor"
 				>
@@ -183,7 +197,6 @@ onMounted(() => {
 		</header>
 
 		<div class="map-wrapper">
-			<!-- THE FIX IS HERE: Add the :locations prop -->
 			<MapComponent
 				:key="selectedCountry"
 				:center="mapCenter"
@@ -192,9 +205,11 @@ onMounted(() => {
 				@marker-click="handleMarkerClick"
 				@church-marker-click="handleChurchMarkerClick"
 			/>
+			<!-- NEW: Pass the dynamic props to StatsBox -->
 			<StatsBox
-				:total-regions="totalUniqueRegions"
 				:total-churches="totalChurches"
+				:stat-count="regionOrCountryCount"
+				:stat-label="regionOrCountryLabel"
 			/>
 		</div>
 

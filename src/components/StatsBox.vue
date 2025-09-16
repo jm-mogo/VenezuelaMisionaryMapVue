@@ -1,7 +1,8 @@
 <script setup lang="ts">
 defineProps<{
-	totalRegions: number; // CHANGED from totalStates
 	totalChurches: number;
+	statCount: number; // CHANGED: Renamed for clarity
+	statLabel: string; // NEW: The dynamic label
 }>();
 </script>
 
@@ -13,14 +14,15 @@ defineProps<{
 		</div>
 		<div class="stat-divider"></div>
 		<div class="stat-item">
-			<span class="stat-number">{{ totalRegions }}</span>
-			<span class="stat-label">Estados</span>
-			<!-- CHANGED from Regiones -->
+			<!-- Use the new dynamic props -->
+			<span class="stat-number">{{ statCount }}</span>
+			<span class="stat-label">{{ statLabel }}</span>
 		</div>
 	</div>
 </template>
 
 <style scoped>
+/* All styles remain the same */
 .stats-box {
 	position: absolute;
 	top: 10px;
@@ -28,12 +30,12 @@ defineProps<{
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 8px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-	z-index: 500; /* Ensure it's above the map tiles */
+	z-index: 500;
 	display: flex;
 	align-items: center;
 	padding: 8px 12px;
 	font-family: sans-serif;
-	backdrop-filter: blur(4px); /* Frosty glass effect */
+	backdrop-filter: blur(4px);
 }
 
 .stat-item {
@@ -62,5 +64,3 @@ defineProps<{
 	background-color: #e2e8f0;
 }
 </style>
-``` And that's it! Your stats box will now show a more accurate count of the
-unique Venezuelan states represented on the map.
