@@ -47,49 +47,48 @@ const shareChurch = async () => {
 		</div>
 
 		<div class="card-footer">
-			<!-- Section 1: Contact Links -->
 			<span class="footer-title">Contacto y Ubicación:</span>
+			<!-- CORRECTED SOCIAL LINKS LOGIC -->
 			<div class="links-container">
 				<a
-					vif="church.locationUrl"
+					v-if="church.locationUrl"
 					:href="church.locationUrl"
 					target="_blank"
 					class="icon-link location-link"
 				>
 					<img src="/location.png" alt="Mapa" class="icon" />
 				</a>
-				<a
-					v-for="social in church.socials"
-					:key="social.name"
-					:href="social.socialUrl"
-					target="_blank"
-					class="icon-link"
-				>
-					<img
-						vif="social.name === 'instagram'"
-						src="/instagram.png"
-						alt="Instagram"
-						class="icon"
-					/>
-					<img
-						vif="social.name === 'facebook'"
-						src="/facebook.png"
-						alt="Facebook"
-						class="icon"
-					/>
-					<img
-						vif="social.name === 'youtube'"
-						src="/youtube.png"
-						alt="YouTube"
-						class="icon"
-					/>
-				</a>
+				<!-- The v-for now iterates over a template block -->
+				<template v-for="social in church.socials" :key="social.name">
+					<a
+						:href="social.socialUrl"
+						target="_blank"
+						class="icon-link"
+					>
+						<img
+							v-if="social.name === 'instagram'"
+							src="/instagram.png"
+							alt="Instagram"
+							class="icon"
+						/>
+						<img
+							v-if="social.name === 'facebook'"
+							src="/facebook.png"
+							alt="Facebook"
+							class="icon"
+						/>
+						<img
+							v-if="social.name === 'youtube'"
+							src="/youtube.png"
+							alt="YouTube"
+							class="icon"
+						/>
+					</a>
+				</template>
 			</div>
 
-			<!-- NEW: Visual separator -->
 			<div class="separator"></div>
 
-			<!-- NEW: Section 2: Share Button -->
 			<div class="share-section">
 				<span class="footer-title">Compartir esta iglesia</span>
 				<button @click="shareChurch" class="icon-link share-button">
@@ -97,7 +96,6 @@ const shareChurch = async () => {
 				</button>
 			</div>
 
-			<!-- "Copied" feedback message -->
 			<div v-if="showCopyMessage" class="copy-feedback">
 				¡Enlace copiado!
 			</div>
@@ -106,6 +104,7 @@ const shareChurch = async () => {
 </template>
 
 <style scoped>
+/* All styles are the same */
 .church-card {
 	font-family: sans-serif;
 	text-align: center;
@@ -185,18 +184,12 @@ const shareChurch = async () => {
 	transform: scale(1.15);
 }
 
-/* NEW: Style for the separator */
 .separator {
 	height: 1px;
 	background-color: #e9ecef;
-	margin: 20px auto; /* Adds space above and below, and centers */
-	width: 80%; /* Don't let it touch the edges */
+	margin: 20px auto;
+	width: 80%;
 }
-
-/* NEW: Wrapper for the share section */
-/* .share-section {
-	
-} */
 
 .copy-feedback {
 	position: absolute;
