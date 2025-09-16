@@ -150,6 +150,7 @@
 				"location": "Los Teques",
 				"latitude": [10.3492, -67.0345],
 				"img": "./familyPictures/losTeques.jpg",
+				"locationUrl": "https://maps.app.goo.gl/rb6NfoPMXsS8P2UC6?g_st=awb",
 				"socials": [
 					{
 						"name": "facebook",
