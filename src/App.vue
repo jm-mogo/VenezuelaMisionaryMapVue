@@ -179,7 +179,7 @@ onMounted(() => {
 	<main class="app-container">
 		<header>
 			<div class="header-left">
-				<h1>Mapa Misionero</h1>
+				<h1>Iglesias Bautistas Independientes</h1>
 				<CountrySelector
 					:countries="availableCountries"
 					v-model="selectedCountry"
