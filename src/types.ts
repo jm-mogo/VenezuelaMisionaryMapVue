@@ -12,8 +12,9 @@ export interface Church {
 	location: string;
 	img: string;
 	latitude: [number, number];
-	locationUrl?: string; // Optional property
-	socials?: Social[]; // Optional array of Social objects
+	address?: string; // <-- NEW OPTIONAL PROPERTY
+	locationUrl?: string;
+	socials?: Social[];
 }
 
 // Defines the structure for the top-level objects in locations.json
@@ -22,7 +23,8 @@ export interface State {
 	name: string;
 	latitude: [number, number];
 	region: string;
-	country: string; // <-- NEW REQUIRED PROPERTY
+	country: string;
+	isFriend?: boolean; // We'll keep this from the previous task
 	multiChurchState?: boolean;
 	churches?: Church[];
 	family?: string;
@@ -30,6 +32,7 @@ export interface State {
 	img?: string;
 	locationUrl?: string;
 	socials?: Social[];
+	address?: string; // <-- NEW: Also add here for single-church states
 }
 
 // Defines the structure for a search result

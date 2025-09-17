@@ -44,11 +44,15 @@ const shareChurch = async () => {
 		<div class="card-content">
 			<h2 class="church-name">{{ church.name }}</h2>
 			<p class="family-name">Familia {{ church.family }}</p>
+
+			<!-- NEW: Display the address if it exists -->
+			<p v-if="church.address" class="address-text">
+				{{ church.address }}
+			</p>
 		</div>
 
 		<div class="card-footer">
 			<span class="footer-title">Contacto y Ubicación:</span>
-			<!-- CORRECTED SOCIAL LINKS LOGIC -->
 			<div class="links-container">
 				<a
 					v-if="church.locationUrl"
@@ -58,7 +62,6 @@ const shareChurch = async () => {
 				>
 					<img src="/location.png" alt="Mapa" class="icon" />
 				</a>
-				<!-- The v-for now iterates over a template block -->
 				<template v-for="social in church.socials" :key="social.name">
 					<a
 						:href="social.socialUrl"
@@ -104,7 +107,6 @@ const shareChurch = async () => {
 </template>
 
 <style scoped>
-/* All styles are the same */
 .church-card {
 	font-family: sans-serif;
 	text-align: center;
@@ -139,6 +141,21 @@ const shareChurch = async () => {
 	font-size: 1.2rem;
 	color: #6c757d;
 	margin-top: 8px;
+}
+
+/* NEW: Style for the address text */
+.address-text {
+	font-size: 0.95rem;
+	color: #4a5568;
+	margin-top: 16px;
+	padding: 12px;
+	border-radius: 6px;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
+	line-height: 1.5;
+	max-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .card-footer {

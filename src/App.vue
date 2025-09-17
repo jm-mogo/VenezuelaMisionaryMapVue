@@ -38,13 +38,25 @@ const availableCountries = computed(() => {
 	return ["All", ...Array.from(countries)];
 });
 
+// UPDATED: The MASTER reactive data source for all child components
 const filteredLocations = computed(() => {
-	if (selectedCountry.value === "All") {
-		return locationsData as State[];
+	// Check the environment variable provided by Vercel
+	const isFriendsOnlyMode =
+		import.meta.env.VITE_FILTER_MODE === "friends_only";
+
+	// First, get all locations
+	let locations = locationsData as State[];
+
+	// If the 'friends_only' mode is active, apply the filter
+	if (isFriendsOnlyMode) {
+		locations = locations.filter((loc) => loc.isFriend);
 	}
-	return (locationsData as State[]).filter(
-		(loc) => loc.country === selectedCountry.value
-	);
+
+	// Then, filter by the selected country as before
+	if (selectedCountry.value === "All") {
+		return locations;
+	}
+	return locations.filter((loc) => loc.country === selectedCountry.value);
 });
 
 const handleMarkerClick = (state: State) => {
@@ -82,7 +94,19 @@ const handleCloseChurchModal = () => {
 	displayedChurch.value = null;
 };
 
-// --- Statistics Calculation ---
+const regionOrCountryCount = computed(() => {
+	if (selectedCountry.value === "All") {
+		const uniqueCountries = new Set(
+			filteredLocations.value.map((loc) => loc.country)
+		);
+		return uniqueCountries.size;
+	} else {
+		const uniqueRegions = new Set(
+			filteredLocations.value.map((state) => state.region)
+		);
+		return uniqueRegions.size;
+	}
+});
 const totalChurches = computed(() => {
 	return filteredLocations.value.reduce((count, state) => {
 		if (state.multiChurchState && state.churches) {
@@ -91,24 +115,12 @@ const totalChurches = computed(() => {
 		return count + 1;
 	}, 0);
 });
-
-// NEW: Dynamic count for the stats box
-const regionOrCountryCount = computed(() => {
-	if (selectedCountry.value === "All") {
-		// If "All" is selected, count the number of unique countries
-		return availableCountries.value.length - 1; // Subtract 1 for the "All" entry
-	} else {
-		// Otherwise, count the unique regions for the selected country
-		const uniqueRegions = new Set(
-			filteredLocations.value.map((state) => state.region)
-		);
-		return uniqueRegions.size;
-	}
-});
-
-// NEW: Dynamic label for the stats box
 const regionOrCountryLabel = computed(() => {
-	return selectedCountry.value === "All" ? "Países" : "Estados";
+	if (selectedCountry.value === "All") {
+		// If there is only 1 country in the filtered list, label should be singular
+		return regionOrCountryCount.value === 1 ? "País" : "Países";
+	}
+	return "Estados";
 });
 
 watch(selectedCountry, (newCountry) => {

@@ -6,6 +6,7 @@
 		"location": "Caja Seca",
 		"region": "Zulia",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [9.1518116, -71.0824613],
 		"img": "./familyPictures/cajaSeca.jpg"
 	},
@@ -15,6 +16,7 @@
 		"multiChurchState": true,
 		"region": "Distrito Capital",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [10.486651, -66.94913],
 		"churches": [
 			{
@@ -22,6 +24,7 @@
 				"name": "IBBVA",
 				"family": "Paez",
 				"location": "Vista Alegre",
+				"address": "2da. Transversal Avenida Rotaria, Quinta Bautista. Urb. La Paz, Caracas.",
 				"latitude": [10.48669, -66.95333],
 				"locationUrl": "https://maps.app.goo.gl/PboYpmG1gFyaP4FZ8",
 				"img": "./familyPictures/caracas.jpg",
@@ -94,6 +97,7 @@
 				"name": "Iglesia Bíblica Misionera El Cristo",
 				"family": "Parra",
 				"location": "La Florida",
+				"address": "Av. Los Mangos, Quinta BBN ( al lado de la Cantv ), La Florida, Caracas.",
 				"latitude": [10.499, -66.883],
 				"locationUrl": "https://maps.app.goo.gl/4FCahPz4qZhD4irVA",
 				"img": "./familyPictures/laFlorida.jpg"
@@ -106,6 +110,7 @@
 		"multiChurchState": true,
 		"region": "La Guaira",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [10.589, -66.7367],
 		"churches": [
 			{
@@ -132,6 +137,16 @@
 				"location": "Catia La Mar",
 				"latitude": [10.6038, -67.0303],
 				"img": "./familyPictures/catiaLaMar.jpg"
+			},
+			{
+				"id": "delCaribe",
+				"name": "Iglesia Bautista Del Caribe",
+				"family": "Oropeza",
+				"location": "Caribe",
+				"address": "Avenida principal del Caribe, al lado del Farmahorro, Colegio Emilio Boggio.",
+				"latitude": [10.612, -66.8584],
+				"locationUrl": "https://maps.app.goo.gl/CgJRnJJiBs52f5ki8",
+				"img": "./familyPictures/caribe.jpg"
 			}
 		]
 	},
@@ -141,6 +156,7 @@
 		"multiChurchState": true,
 		"region": "Miranda",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [10.349, -67.01],
 		"churches": [
 			{
@@ -190,6 +206,7 @@
 		"location": "Cua",
 		"region": "Miranda",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [10.1709, -66.8916],
 		"locationUrl": "https://maps.app.goo.gl/Y2STAcXG8smCGxp98",
 		"img": "./familyPictures/cua.jpg"
@@ -200,6 +217,7 @@
 		"multiChurchState": true,
 		"region": "Carabobo",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [10.21, -67.96],
 		"churches": [
 			{
@@ -267,6 +285,7 @@
 		"location": "Maracaibo",
 		"region": "Zulia",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [10.641, -71.6074],
 		"img": "./familyPictures/maracaibo.jpg"
 	},
@@ -277,6 +296,7 @@
 		"location": "Margarita",
 		"region": "Nueva Esparta",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [11.0826, -63.9675],
 		"img": "./familyPictures/juangriego.jpg"
 	},
@@ -287,6 +307,7 @@
 		"location": "Tachira, San Cristobal",
 		"region": "Táchira",
 		"country": "Venezuela",
+		"isFriend": true,
 		"locationUrl": "https://maps.app.goo.gl/dc8Vr3oVeziG1Sex8",
 		"latitude": [7.9137, -72.1416],
 		"img": "./familyPictures/tachira.jpg"
@@ -298,6 +319,7 @@
 		"location": "Caripito, Monagas",
 		"region": "Monagas",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [10.1073, -63.1031],
 		"img": "./familyPictures/caripito.jpg"
 	},
@@ -308,6 +330,7 @@
 		"location": "Puerto Ayacucho, Amazonas",
 		"region": "Amazonas",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [5.6615, -67.5828],
 		"img": "./familyPictures/puertoAyacucho.jpg"
 	},
@@ -318,6 +341,7 @@
 		"location": "San Fernando de Apure",
 		"region": "Apure",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [7.8807, -67.4695],
 		"img": "./familyPictures/sanFernando.jpg"
 	},
@@ -328,6 +352,7 @@
 		"location": "Boconó",
 		"region": "Trujillo",
 		"country": "Venezuela",
+		"isFriend": true,
 		"latitude": [9.245, -70.254],
 		"img": "./familyPictures/placeholder.svg"
 	},
@@ -338,6 +363,7 @@
 		"location": "Bogotá",
 		"region": "Cundinamarca",
 		"country": "Colombia",
+		"isFriend": true,
 		"latitude": [4.60971, -74.08175],
 		"img": "./familyPictures/placeholder.svg"
 	},
@@ -348,6 +374,8 @@
 		"location": "Armenia",
 		"region": "Quindío",
 		"country": "Colombia",
+		"isFriend": false,
+		"address": "Barrio la Cecilia 2da etapa mz 14 casa 3",
 		"latitude": [4.54, -75.66],
 		"img": "./familyPictures/armeniaQuindio.jpg",
 		"socials": [
