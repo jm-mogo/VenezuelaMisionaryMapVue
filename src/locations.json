@@ -118,9 +118,23 @@
 				"name": "Iglesia Bautista La Espada",
 				"family": "Ramirez",
 				"location": "La Guaira",
-				"latitude": [10.599, -66.9346],
-				"locationUrl": "https://maps.app.goo.gl/eUBhhZpb8uyDKyKC7",
-				"img": "./familyPictures/laGuaira.jpg"
+				"latitude": [10.605963, -66.924298],
+				"locationUrl": "https://maps.app.goo.gl/oBhV7gWz3ouGK2X18?g_st=aw",
+				"img": "./familyPictures/laGuaira.jpg",
+				"socials": [
+					{
+						"name": "facebook",
+						"socialUrl": "https://www.facebook.com/iglesiabautistalaespada"
+					},
+					{
+						"name": "instagram",
+						"socialUrl": "https://www.instagram.com/iglesiabautistalaespada/"
+					},
+					{
+						"name": "youtube",
+						"socialUrl": "https://youtube.com/@iglesiabautistalaespada4062?si=JVCxbBte6OsgHfmW"
+					}
+				]
 			},
 			{
 				"id": "carayaca",
@@ -147,6 +161,16 @@
 				"latitude": [10.612, -66.8584],
 				"locationUrl": "https://maps.app.goo.gl/CgJRnJJiBs52f5ki8",
 				"img": "./familyPictures/caribe.jpg"
+			},
+			{
+				"id": "caribia",
+				"name": "Iglesia Bautista Monte Horeb",
+				"family": "Capote",
+				"location": "Caribia",
+				"address": "Venezuela Ciudad Caribia, terraza B, planta baja, edificio 16, al lado de la fiscalia.",
+				"latitude": [10.597148, -67.042781],
+				"locationUrl": "https://maps.app.goo.gl/XwEg2bcQ2U73grCt7",
+				"img": "./familyPictures/caribia.jpg"
 			}
 		]
 	},
